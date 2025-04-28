@@ -33,7 +33,7 @@ Backend built with **.NET 8** + **SQL Server** and Frontend with **Angular 19** 
 1. Clone the repository:
    ```bash
    git clone https://github.com/JuanArias115/Klimabewacher
-   cd your-repo/backend
+   cd Klimabewacher/backend
    ```
 
 2. Configure the connection string in `appsettings.json`:
