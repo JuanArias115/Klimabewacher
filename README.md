@@ -1,98 +1,100 @@
-# 📡 Proyecto de Monitoreo Meteorológico IoT
+# 📡 IoT Weather Monitoring Project
 
-Backend en **.NET 8** + **SQL Server** y Frontend en **Angular 19** para la recolección, almacenamiento y visualización de datos meteorológicos enviados por dispositivos IoT (ESP8266).
+Backend built with **.NET 8** + **SQL Server** and Frontend with **Angular 19** for collecting, storing, and visualizing weather data sent by IoT devices (**ESP8266**).
 
 ---
 
-## 📋 Tecnologías usadas
+## 📋 Technologies Used
 
 - **Backend**: .NET 8 Web API
-- **Base de datos**: SQL Server
+- **Database**: SQL Server
 - **Frontend**: Angular 19
 - **ORM**: Entity Framework Core
-- **Seguridad**: HMAC SHA256 para validación de autenticidad de peticiones
+- **Security**: HMAC SHA256 for data authenticity validation
+- **Device**: ESP8266 (Wi-Fi microcontroller)
 
 ---
 
-## 🚀 Instalación y configuración
+## 🚀 Installation and Setup
 
-### 🔧 Requisitos previos
+### 🔧 Prerequisites
 
 - .NET 8 SDK
 - Node.js + Angular CLI 19
 - SQL Server
-- Visual Studio, VS Code o tu editor favorito
-- Postman (opcional, para pruebas API)
+- Visual Studio, VS Code, or your favorite editor
+- Postman (optional, for API testing)
+- ESP8266 configured to send data over HTTP
 
 ---
 
-### 🛠️ Configuración del Backend (.NET 8)
+### 🛠️ Backend Setup (.NET 8)
 
-1. Clona el repositorio:
+1. Clone the repository:
    ```bash
-   git clone https://github.com/tu-usuario/tu-repo.git
-   cd tu-repo/backend
+   git clone https://github.com/your-username/your-repo.git
+   cd your-repo/backend
    ```
 
-2. Configura la cadena de conexión en `appsettings.json`:
+2. Configure the connection string in `appsettings.json`:
    ```json
    "ConnectionStrings": {
-     "DefaultConnection": "Server=localhost;Database=NombreBD;User Id=usuario;Password=contraseña;"
+     "DefaultConnection": "Server=localhost;Database=YourDatabaseName;User Id=your_user;Password=your_password;"
    },
    "Security": {
-     "HmacSecret": "claveSuperSecreta123"
+     "HmacSecret": "yourSuperSecretKey123"
    }
    ```
 
-3. Instala dependencias necesarias:
+3. Install required dependencies:
    ```bash
    dotnet restore
    ```
 
-4. Ejecuta migraciones para crear la base de datos:
+4. Run database migrations:
    ```bash
    dotnet ef database update
    ```
 
-5. Levanta el proyecto:
+5. Launch the project:
    ```bash
    dotnet run
    ```
 
-La API estará disponible en: `http://localhost:5059`
+The API will be available at: `http://localhost:5059`
 
 ---
 
-### 🛠️ Configuración del Frontend (Angular 19)
+### 🛠️ Frontend Setup (Angular 19)
 
-1. Ve a la carpeta del frontend:
+1. Navigate to the frontend folder:
    ```bash
-   cd tu-repo/frontend
+   cd your-repo/frontend
    ```
 
-2. Instala dependencias:
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-3. Corre el proyecto:
+3. Serve the project:
    ```bash
    ng serve --open
    ```
 
-La aplicación abrirá en `http://localhost:4200`
+The application will open at `http://localhost:4200`
 
 ---
 
-## 🧪 Pruebas de la API (Opcional)
+## 🧪 API Testing (Optional)
 
-Puedes usar Postman para enviar datos de prueba:
+Use Postman to send test data:
 
 - **URL**: `http://localhost:5059/api/mediciones`
-- **Método**: POST
+- **Method**: POST
 - **Headers**:
   - `Content-Type: application/json`
-  - `X-Signature: [Firma HMAC generada]`
+  - `X-Signature: [Generated HMAC Signature]`
 - **Body** (JSON):
   ```json
   {
@@ -105,7 +107,7 @@ Puedes usar Postman para enviar datos de prueba:
 
 ---
 
-## ⚙️ Estructura del proyecto
+## ⚙️ Project Structure
 
 ```
 /backend
@@ -125,21 +127,25 @@ Puedes usar Postman para enviar datos de prueba:
 
 ---
 
-## 🛡️ Seguridad implementada
+## 🛡️ Security Implemented
 
-- Uso de **HMAC SHA256** para validar que los datos vienen de dispositivos autorizados.
-- Protección básica contra inyección de datos y peticiones no autenticadas.
-
----
-
-## 📈 Próximas mejoras
-
-- Autenticación de usuarios para visualizar el dashboard.
-- Alarmas o notificaciones en caso de valores fuera de rango.
-- Integración de sensores adicionales (presión atmosférica, lluvia).
+- Use of **HMAC SHA256** to validate that data originates from authorized devices.
+- Basic protection against data injection and unauthorized requests.
 
 ---
 
-## 🤝 Contribuciones
+## 📈 Future Improvements
 
-¡Se aceptan pull requests! ✨ Si tienes ideas o mejoras, no dudes en contribuir.
+- User authentication for dashboard access
+- Alarms or notifications for out-of-range values
+- Integration of additional sensors (atmospheric pressure, rain)
+
+---
+
+## 🤝 Contributions
+
+Pull requests are welcome! ✨ Feel free to suggest ideas or improvements.
+
+---
+
+This project uses an **ESP8266** to collect weather data and securely send it to the backend via HTTP with HMAC authentication.
