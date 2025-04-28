@@ -32,7 +32,7 @@ Backend built with **.NET 8** + **SQL Server** and Frontend with **Angular 19** 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-repo.git
+   git clone https://github.com/JuanArias115/Klimabewacher
    cd your-repo/backend
    ```
 
