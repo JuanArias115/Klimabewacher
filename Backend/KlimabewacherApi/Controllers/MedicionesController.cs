@@ -5,6 +5,7 @@ using KlimabewacherApi.Context;
 using KlimabewacherApi.Properties;
 using KlimabewacherApi.Security;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace KlimabewacherApi.Controllers
@@ -23,32 +24,48 @@ namespace KlimabewacherApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostMedicion([FromBody] Medicion medicion, [FromHeader(Name = "X-Signature")] string? firma)
+        public async Task<IActionResult> PostMedicion([FromBody] Medicion medicion)
         {
-            if (string.IsNullOrEmpty(firma))
-                return Unauthorized("Falta la firma");
+            if (!Request.Headers.ContainsKey("Authorization"))
+                return Unauthorized("Falta el encabezado de autorización");
 
-            var payload = $"{medicion.DeviceId}|{medicion.Temperatura}|{medicion.Humedad}|{medicion.Ubicacion}";
-            var firmaEsperada = GenerarFirmaHmac(payload, _settings.Value.HmacSecret);
+            var authHeader = Request.Headers["Authorization"].ToString();
+            if (!authHeader.StartsWith("Basic "))
+                return Unauthorized("Encabezado de autorización inválido");
 
-            if (firma != firmaEsperada.ToLower())
-                return Unauthorized("Firma inválida");
+            var encodedCredentials = authHeader.Substring("Basic ".Length).Trim();
+            var credentialBytes = Convert.FromBase64String(encodedCredentials);
+            var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
 
+            if (credentials.Length != 2)
+                return Unauthorized("Credenciales mal formateadas");
+
+            var username = credentials[0];
+            var password = credentials[1];
+
+            // Validar las credenciales (reemplaza con tu lógica de validación)
+            if (username != "juanarias" || password != "Arias2020*")
+                return Unauthorized("Credenciales inválidas");
+
+            // Procesar la medición
             _context.Mediciones.Add(medicion);
             await _context.SaveChangesAsync();
 
             return Ok(new { message = "Medición registrada exitosamente" });
         }
 
-        private string GenerarFirmaHmac(string mensaje, string clave)
+        [HttpGet("historial")]
+        public async Task<IActionResult> GetHistorial()
         {
-            var keyBytes = Encoding.UTF8.GetBytes(clave);
-            var messageBytes = Encoding.UTF8.GetBytes(mensaje);
+            var historial = await _context.Mediciones
+                .OrderByDescending(m => m.FechaHora)
+                .Take(20) // Puedes ajustar la cantidad de registros
+                .ToListAsync();
 
-            using var hmac = new HMACSHA256(keyBytes);
-            var hash = hmac.ComputeHash(messageBytes);
-            return Convert.ToHexString(hash); // Disponible en .NET 6+
+            return Ok(historial);
         }
+
+
     }
 }
 

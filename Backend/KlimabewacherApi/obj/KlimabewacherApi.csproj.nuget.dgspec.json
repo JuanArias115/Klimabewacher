@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/juanarias/Desktop/Backend/KlimabewacherApi/KlimabewacherApi/KlimabewacherApi.csproj": {}
+    "/Users/juanarias/Klimabewacher/Backend/KlimabewacherApi/KlimabewacherApi.csproj": {}
   },
   "projects": {
-    "/Users/juanarias/Desktop/Backend/KlimabewacherApi/KlimabewacherApi/KlimabewacherApi.csproj": {
+    "/Users/juanarias/Klimabewacher/Backend/KlimabewacherApi/KlimabewacherApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/juanarias/Desktop/Backend/KlimabewacherApi/KlimabewacherApi/KlimabewacherApi.csproj",
+        "projectUniqueName": "/Users/juanarias/Klimabewacher/Backend/KlimabewacherApi/KlimabewacherApi.csproj",
         "projectName": "KlimabewacherApi",
-        "projectPath": "/Users/juanarias/Desktop/Backend/KlimabewacherApi/KlimabewacherApi/KlimabewacherApi.csproj",
+        "projectPath": "/Users/juanarias/Klimabewacher/Backend/KlimabewacherApi/KlimabewacherApi.csproj",
         "packagesPath": "/Users/juanarias/.nuget/packages/",
-        "outputPath": "/Users/juanarias/Desktop/Backend/KlimabewacherApi/KlimabewacherApi/obj/",
+        "outputPath": "/Users/juanarias/Klimabewacher/Backend/KlimabewacherApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/juanarias/.nuget/NuGet/NuGet.Config"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {

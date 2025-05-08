@@ -17,8 +17,19 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.Configure<SecuritySettings>(builder.Configuration.GetSection("Security"));
 
+// Política de CORS abierta
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirTodo", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
+app.UseCors("PermitirTodo"); // 👈 DEBE estar antes de MapControllers
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
