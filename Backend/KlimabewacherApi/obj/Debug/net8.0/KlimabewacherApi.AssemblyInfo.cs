@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KlimabewacherApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+701a2e5e4618b6688ccccd8145ffaeb02a40a7fc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d857aacbcf796221e64cc1a8f3efa8a407228c9b")]
 [assembly: System.Reflection.AssemblyProductAttribute("KlimabewacherApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KlimabewacherApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

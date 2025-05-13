@@ -58,8 +58,7 @@ namespace KlimabewacherApi.Controllers
         public async Task<IActionResult> GetHistorial()
         {
             var historial = await _context.Mediciones
-                .OrderByDescending(m => m.FechaHora)
-                .Take(20) // Puedes ajustar la cantidad de registros
+                .Where(m => m.FechaHora >= DateTime.Now) // Puedes ajustar la cantidad de registros
                 .ToListAsync();
 
             return Ok(historial);

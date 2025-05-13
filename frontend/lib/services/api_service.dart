@@ -5,8 +5,11 @@ import 'package:http/http.dart' as http;
 import '../models/medicion.dart';
 
 class ApiService {
+  // static const String _baseUrl =
+  //     'https://juanariasdev.com/Klimabewacher/api/mediciones/historial';
+
   static const String _baseUrl =
-      'https://juanariasdev.com/Klimabewacher/api/mediciones/historial';
+      'http://localhost:5059/api/mediciones/historial';
 
   static Future<List<Medicion>> fetchMediciones() async {
     try {
@@ -28,7 +31,7 @@ class ApiService {
   static Future<Medicion?> fetchLatestMedicion() async {
     try {
       final mediciones = await fetchMediciones();
-      return mediciones.isNotEmpty ? mediciones.first : null;
+      return mediciones.isNotEmpty ? mediciones.last : null;
     } catch (e) {
       return null;
     }
