@@ -57,9 +57,12 @@ namespace KlimabewacherApi.Controllers
         [HttpGet("historial")]
         public async Task<IActionResult> GetHistorial()
         {
+            var hoy = DateTime.Now.Date;
+
             var historial = await _context.Mediciones
-                .Where(m => m.FechaHora >= DateTime.Now) // Puedes ajustar la cantidad de registros
+                .Where(m => m.FechaHora.Date == hoy)
                 .ToListAsync();
+
 
             return Ok(historial);
         }
